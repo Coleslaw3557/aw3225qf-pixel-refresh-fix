@@ -32,7 +32,7 @@ The moment the display appears, run:
 ./ddc_write 0x04 1 && ./ddc_write 0x05 1 && ./ddc_write 0x06 1 && ./ddc_write 0x08 1 && ./ddc_write 0xE0 1 && ./ddc_write 0x04 1
 ```
 
-**Unplug the power cable immediately after the command completes.**
+**Unplug the power cable immediately after the command completes. You must unplug the monitor before the screen goes black!**
 
 ## Step 4: Verify
 
@@ -51,6 +51,6 @@ Plug the monitor back in normally. It should boot without entering the pixel ref
 ## Notes
 
 - The `ddc_write` tool uses `IOAVServiceWriteI2C`, the same Apple Silicon DDC/CI API used by m1ddc and BetterDisplay. It does not require sudo.
-- This does **not** work over the built-in HDMI port on M1 or entry-level M2 Macs. USB-C/DisplayPort only.
+- This may not work over the built-in HDMI port on M1 or entry-level M2 Macs. USB-C/DisplayPort/Tbolt.
+- Make sure the usb cable is plugged in.
 - Standard DDC reset commands alone (without the button-hold power cycle trick) do not work — the monitor ACKs the I2C writes but ignores them while the refresh loop is active.
-- After recovery, consider avoiding firmware M2B107/M2B109 or checking Dell support for a patched version before updating again.
